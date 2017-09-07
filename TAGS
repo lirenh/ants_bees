@@ -1,0 +1,152 @@
+
+ants.py,6935
+class Place:Place14,222
+    def __init__(self, name, exit=None):__init__17,302
+    def add_insect(self, insect):add_insect33,849
+    def remove_insect(self, insect):remove_insect59,1842
+    def __str__(self):__str__74,2358
+class Insect:Insect78,2408
+    is_ant = Falseis_ant81,2498
+    watersafe = Falsewatersafe82,2517
+    def __init__(self, armor, place=None):__init__84,2540
+    def reduce_armor(self, amount):reduce_armor89,2763
+    def action(self, colony):action103,3206
+    def __repr__(self):__repr__109,3365
+class Bee(Insect):Bee114,3496
+    name = 'Bee'name117,3594
+    watersafe = Truewatersafe118,3611
+    def sting(self, ant):sting120,3633
+    def move_to(self, place):move_to124,3748
+    def blocked(self):blocked129,3913
+    def action(self, colony):action135,4164
+class Ant(Insect):Ant147,4593
+    is_ant = Trueis_ant150,4677
+    implemented = False  # Only implemented Ant classes should be instantiatedimplemented151,4695
+    damage = 0damage152,4774
+    food_cost = 0food_cost153,4789
+    blocks_path = Trueblocks_path154,4807
+    container = Falsecontainer155,4830
+    def __init__(self, armor=1):__init__157,4853
+    def can_contain(self, other):can_contain161,4976
+class HarvesterAnt(Ant):HarvesterAnt167,5125
+    name = 'Harvester'name170,5226
+    implemented = Trueimplemented171,5249
+    food_cost = 2food_cost172,5272
+    def action(self, colony):action174,5291
+def random_or_none(s):random_or_none182,5518
+class ThrowerAnt(Ant):ThrowerAnt188,5664
+    name = 'Thrower'name191,5766
+    implemented = Trueimplemented192,5787
+    damage = 1damage193,5810
+    food_cost = 4food_cost194,5825
+    min_range = 0min_range195,5843
+    max_range = 10max_range196,5861
+    def nearest_bee(self, hive):nearest_bee198,5881
+    def throw_at(self, target):throw_at216,6493
+    def action(self, colony):action221,6668
+class Hive(Place):Hive226,6809
+    def __init__(self, assault_plan):__init__232,6969
+    def strategy(self, colony):strategy243,7314
+class AntColony:AntColony249,7527
+    def __init__(self, strategy, hive, ant_types, create_places, food=2):__init__260,7890
+    def configure(self, hive, create_places):configure276,8476
+        def register_place(place, is_bee_entrance):register_place281,8679
+    def simulate(self):simulate289,8986
+    def deploy_ant(self, place_name, ant_type_name):deploy_ant306,9719
+    def remove_ant(self, place_name):remove_ant318,10201
+    def ants(self):ants325,10416
+    def bees(self):bees329,10525
+    def insects(self):insects333,10625
+    def __str__(self):__str__336,10686
+def ant_types():ant_types341,10852
+def interactive_strategy(colony):interactive_strategy350,11158
+def start_with_strategy(args, strategy):start_with_strategy361,11562
+def wet_layout(queen, register_place, length=8, tunnels=3, moat_frequency=3):wet_layout393,12742
+def dry_layout(queen, register_place, length=8, tunnels=3):dry_layout404,13254
+def test_layout(queen, register_place, length=8):test_layout408,13405
+class AssaultPlan(dict):AssaultPlan418,13602
+    def __init__(self, bee_armor=3):__init__427,13868
+    def add_wave(self, time, count):add_wave430,13941
+    def all_bees(self):all_bees437,14199
+def make_test_assault_plan():make_test_assault_plan441,14357
+def make_full_assault_plan():make_full_assault_plan444,14443
+def make_insane_assault_plan():make_insane_assault_plan450,14610
+class Water(Place):Water460,14824
+    def add_insect(self, insect):add_insect463,14912
+class FireAnt(Ant):FireAnt471,15225
+    name = 'Fire'name474,15308
+    damage = 3damage475,15326
+    food_cost = 4food_cost477,15370
+    implemented = True #tells the game that you've added a new type of Antimplemented478,15388
+    def reduce_armor(self, amount):reduce_armor480,15464
+class LongThrower(ThrowerAnt):LongThrower489,15795
+    name = 'Long'name492,15906
+    food_cost = 3food_cost494,15953
+    min_range = 4min_range495,15971
+    max_range = 100max_range496,15989
+    implemented = Trueimplemented497,16009
+class ShortThrower(ThrowerAnt):ShortThrower500,16034
+    name = 'Short'name503,16147
+    food_cost = 3food_cost505,16195
+    min_range = 0min_range506,16213
+    max_range = 2max_range507,16231
+    implemented = Trueimplemented508,16249
+class WallAnt(Ant):WallAnt513,16319
+    name = 'Wall'name514,16339
+    food_cost = 4food_cost515,16357
+    implemented = Trueimplemented516,16375
+    def __init__(self, armor=4):__init__517,16398
+class NinjaAnt(Ant):NinjaAnt521,16467
+    name = 'Ninja'name524,16567
+    damage = 1damage525,16586
+    blocks_path = Falseblocks_path527,16630
+    food_cost = 6food_cost528,16654
+    implemented = Trueimplemented529,16672
+    def action(self, colony):action531,16696
+class ScubaThrower(ThrowerAnt):ScubaThrower539,16934
+    name = 'Scuba'name540,16966
+    implemented = Trueimplemented541,16985
+    food_cost = 5food_cost542,17008
+    watersafe = Truewatersafe543,17026
+class HungryAnt(Ant):HungryAnt546,17049
+    name = 'Hungry'name550,17206
+    implemented = Trueimplemented552,17255
+    food_cost = 4food_cost553,17278
+    time_to_digest = 3time_to_digest554,17296
+    def __init__(self):__init__560,17442
+    def eat_bee(self, bee):eat_bee565,17554
+    def action(self, colony):action569,17652
+class BodyguardAnt(Ant):BodyguardAnt580,17965
+    name = 'Bodyguard'name582,18048
+    implemented = Trueimplemented584,18100
+    food_cost = 4food_cost585,18123
+    container = Truecontainer586,18141
+    def __init__(self):__init__588,18163
+    def contain_ant(self, ant):contain_ant592,18278
+    def action(self, colony):action596,18367
+class QueenPlace:QueenPlace600,18463
+    def __init__(self, colony_queen, ant_queen):__init__606,18690
+    def bees(self):bees610,18787
+class QueenAnt(ScubaThrower):  # You should change this lineQueenAnt614,18842
+    name = 'Queen'name617,18984
+    implemented = Trueimplemented619,19032
+    food_cost = 6food_cost620,19055
+    init_count = 0init_count621,19073
+    def __init__(self):__init__623,19093
+    def action(self, colony):action626,19151
+class AntRemover(Ant):AntRemover636,19399
+    name = 'Remover'name639,19493
+    implemented = Trueimplemented640,19514
+    def __init__(self):__init__642,19538
+def make_slow(action):make_slow650,19652
+def make_stun(action):make_stun657,19827
+def apply_effect(effect, bee, duration):apply_effect664,19985
+class SlowThrower(ThrowerAnt):SlowThrower669,20129
+    name = 'Slow'name672,20208
+    implemented = Falseimplemented674,20255
+    def throw_at(self, target):throw_at676,20280
+class StunThrower(ThrowerAnt):StunThrower681,20380
+    name = 'Stun'name684,20459
+    implemented = Falseimplemented686,20506
+    def throw_at(self, target):throw_at688,20531
+def run(*args):run693,20636
